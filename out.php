@@ -22,6 +22,6 @@ function out($uri)
 }
 if (isset(JUMP_LIST[$qry = $_SERVER['QUERY_STRING']])) die(header('Location: ' . JUMP_LIST[$qry]));
 out($uri = 'script/' . str_replace('-', '/', $qry));
-out(substr_replace($uri, '/main', strrpos($uri, '.'), 0));
+out(substr_replace($uri, '/main', ($pos = strrpos($uri, '/')) + strpos(substr($uri, $pos), '.'), 0));
 header('Content-type: application/x-javascript');
 die("alert('Warning From CCPIRA Script Online:\\n\\nCan Not Find The Script \"$qry\"!');");
